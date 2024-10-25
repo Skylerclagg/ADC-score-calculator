@@ -7,20 +7,19 @@
     <link rel="stylesheet" href="teamwork.css">
 </head>
 <body>
-    <!-- Wrapper for centering content -->
+    <!-- Wrapper for fixed menu and score display at the top -->
+    <div class="menu-bar">
+        <button onclick="goBack()">← Back</button>
+        <h1>Teamwork Score Calculator</h1>
+    </div>
+
+    <!-- Fixed score display directly below the menu bar -->
+    <div id="score-display">
+        <span id="total-score">Score: 0</span>
+    </div>
+
+    <!-- Main content wrapper with padding to clear the fixed elements -->
     <div id="content-wrapper">
-        <!-- Menu bar with Back Button -->
-        <div class="menu-bar">
-            <button onclick="goBack()">← Back</button>
-            <h1>Teamwork Score Calculator</h1>
-        </div>
-
-        <!-- Score Display -->
-        <div id="score-display">
-            <span id="total-score">Score: 0</span>
-        </div>
-
-        <!-- Main Content -->
         <div id="content">
             <!-- Drone Zone Tops Cleared -->
             <div class="section">
