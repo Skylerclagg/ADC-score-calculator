@@ -1,7 +1,7 @@
 /* Body Styling */
 body {
-    background-color: black; /* Background color for entire page */
-    color: white; /* Default text color */
+    background-color: black; /* Entire site background black */
+    color: white; /* Default text color white */
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -18,18 +18,19 @@ body {
     box-sizing: border-box;
 }
 
-/* Fixed Menu Bar at the top */
+/* Fixed Menu Bar at the top with black background */
 .menu-bar {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f0f0f0;
+    background-color: black; /* Black background */
     padding: 10px;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 100;
     box-sizing: border-box;
+    color: #6fbf4c; /* Menu text color */
 }
 
 .menu-bar button {
@@ -38,18 +39,18 @@ body {
     background-color: transparent;
     border: none;
     font-size: 18px;
-    color: #6fbf4c; /* Back button text color */
+    color: #6fbf4c; /* Back button color */
     cursor: pointer;
 }
 
-/* Fixed Score Display directly below the menu */
+/* Fixed Score Display directly below the menu, with high visibility */
 #score-display {
     font-size: 24px;
     font-weight: bold;
     padding: 15px;
-    background-color: #333;
+    background-color: #222; /* Darker background to contrast score */
+    color: #6fbf4c; /* Score color */
     text-align: center;
-    color: white;
     width: 100%;
     position: fixed;
     top: 50px; /* Below the menu bar */
