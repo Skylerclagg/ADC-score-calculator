@@ -1,7 +1,7 @@
-/* Ensure body content is centered both horizontally and vertically */
+/* Body Styling */
 body {
-    background-color: black; /* Background color for the whole page */
-    color: white; /* Default text color */
+    background-color: black; /* Entire site background black */
+    color: white; /* Default text color white */
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -76,26 +76,34 @@ body {
     margin-bottom: 20px;
 }
 
+/* Universal button styling to ensure text color is #6fbf4c and non-transparent */
+button {
+    color: #6fbf4c; /* Solid button text color */
+    opacity: 1; /* Ensures no transparency */
+}
+
 /* Styling for counter buttons */
 .counter button {
     font-size: 24px;
     padding: 10px 20px;
     background-color: transparent;
     border: 2px solid #6fbf4c; /* Green border */
-    color: #6fbf4c; /* Green text */
+    color: #6fbf4c; /* Green text color */
     border-radius: 5px;
     cursor: pointer;
+    opacity: 1; /* Ensures no transparency */
 }
 
-/* Drone Button Styling */
+/* Drone button styling with solid text color */
 .drone-options .drone-button {
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 5px;
     background-color: transparent;
     border: 2px solid; /* Outline based on drone color */
-    color: #6fbf4c; /* Green text */
+    color: #6fbf4c; /* Green text color */
     cursor: pointer;
+    opacity: 1; /* Ensures no transparency */
 }
 
 /* Red Drone Buttons */
@@ -110,13 +118,14 @@ body {
 
 /* Selected drone button styling */
 .drone-options .drone-button.selected {
-    color: white;
-    background-color: currentColor; /* Matches the drone's border color (red or blue) */
+    color: #6fbf4c; /* Solid white text for selected state */
+    background-color: currentColor; /* Matches the button's border color */
+    opacity: 1; /* Ensures no transparency */
 }
 
-/* Hover and disabled states */
+/* Hover and Disabled States */
 .drone-options .drone-button:hover:not([disabled]) {
-    opacity: 0.8;
+    opacity: 0.8; /* Slight transparency on hover */
 }
 
 .drone-options .drone-button:disabled {
@@ -135,4 +144,3 @@ body {
 html, body {
     height: 100%;
 }
-
