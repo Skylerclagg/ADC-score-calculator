@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Score Calculators</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="home.css">
+    <script src="home.js" defer></script>
 </head>
 <body>
-    <!-- Load the Home Screen content initially -->
-    <div id="app-container">
-        <script>
-            window.location.href = 'home.html';
-        </script>
+    <div class="home-container">
+        <h1>Welcome to the Score Calculators</h1>
+
+        <!-- Navigation buttons to different calculators -->
+        <div class="button-container">
+            <button onclick="navigateTo('teamwork.html')">Teamwork Score Calculator</button>
+            <button onclick="navigateTo('skills.html')">Skills Score Calculator</button>
+            <button onclick="navigateTo('future.html')">Future Feature</button>
+        </div>
     </div>
 </body>
 </html>
