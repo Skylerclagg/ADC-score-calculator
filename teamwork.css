@@ -9,15 +9,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column; /* Align content vertically */
 }
 
-/* Wrapper to ensure content is centered vertically and horizontally */
+/* Wrapper for centering main content */
 #content-wrapper {
     text-align: center;
     width: 100%;
+    padding-top: 160px; /* Space to account for menu and score display */
+    box-sizing: border-box;
 }
 
-/* Fixed Menu Bar at the top, not covering other content */
+/* Fixed Menu Bar at the top */
 .menu-bar {
     display: flex;
     justify-content: center;
@@ -25,8 +28,8 @@ body {
     background-color: #f0f0f0;
     padding: 10px;
     position: fixed;
-    width: 100%;
     top: 0;
+    width: 100%;
     z-index: 100;
     box-sizing: border-box;
 }
@@ -41,16 +44,7 @@ body {
     cursor: pointer;
 }
 
-/* Adjusts position of all content below the fixed menu bar */
-#content {
-    margin-top: 100px; /* Space to accommodate both menu bar and score display */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Score Display below the menu bar */
+/* Score Display fixed below the menu bar */
 #score-display {
     font-size: 24px;
     font-weight: bold;
@@ -59,8 +53,18 @@ body {
     text-align: center;
     color: white;
     width: 100%;
+    position: fixed;
+    top: 60px; /* Just below the menu bar */
+    z-index: 99;
     box-sizing: border-box;
-    margin-bottom: 20px;
+}
+
+/* Main content styling */
+#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Section headers styling */
@@ -77,7 +81,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* Universal button styling to ensure text color is #6fbf4c and non-transparent */
+/* Universal button styling */
 button {
     color: #6fbf4c; /* Solid button text color */
     opacity: 1; /* Ensures no transparency */
@@ -88,45 +92,45 @@ button {
     font-size: 24px;
     padding: 10px 20px;
     background-color: transparent;
-    border: 2px solid #6fbf4c; /* Green border */
-    color: #6fbf4c; /* Green text color */
+    border: 2px solid #6fbf4c;
+    color: #6fbf4c;
     border-radius: 5px;
     cursor: pointer;
-    opacity: 1; /* Ensures no transparency */
+    opacity: 1;
 }
 
-/* Drone button styling with solid text color */
+/* Drone button styling */
 .drone-options .drone-button {
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 5px;
     background-color: transparent;
-    border: 2px solid; /* Outline based on drone color */
-    color: #6fbf4c; /* Green text color */
+    border: 2px solid;
+    color: #6fbf4c;
     cursor: pointer;
-    opacity: 1; /* Ensures no transparency */
+    opacity: 1;
 }
 
 /* Red Drone Buttons */
 .red-drone-options .drone-button {
-    border-color: red; /* Red border for red drone buttons */
+    border-color: red;
 }
 
 /* Blue Drone Buttons */
 .blue-drone-options .drone-button {
-    border-color: blue; /* Blue border for blue drone buttons */
+    border-color: blue;
 }
 
 /* Selected drone button styling */
 .drone-options .drone-button.selected {
-    color: white; /* Solid white text for selected state */
-    background-color: currentColor; /* Matches the button's border color */
-    opacity: 1; /* Ensures no transparency */
+    color: white;
+    background-color: currentColor;
+    opacity: 1;
 }
 
 /* Hover and Disabled States */
 .drone-options .drone-button:hover:not([disabled]) {
-    opacity: 0.8; /* Slight transparency on hover */
+    opacity: 0.8;
 }
 
 .drone-options .drone-button:disabled {
