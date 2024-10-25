@@ -5,6 +5,10 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 /* Menu Bar Styling */
@@ -13,45 +17,64 @@ body {
     align-items: center;
     background-color: #f0f0f0;
     padding: 10px;
-    position: fixed;
     width: 100%;
-    top: 0;
-    z-index: 100;
+    justify-content: space-between;
+    text-align: center;
 }
 
-.menu-bar button {
-    background-color: transparent;
-    border: none;
-    font-size: 18px;
-    color: #007BFF;
-    cursor: pointer;
+/* Centered Title */
+.menu-bar h1 {
+    flex: 1;
+    text-align: center;
+    color: #6fbf4c; /* Apply button color to title text for uniformity */
 }
 
-/* Score View */
+/* Center Score Display */
 #score-display {
-    margin-top: 60px;
     font-size: 24px;
     font-weight: bold;
     padding: 10px;
     background-color: #333;
-    position: fixed;
-    top: 60px;
+    text-align: center;
+    color: white;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Main Content Area Centering */
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    max-width: 600px; /* Max width for centered alignment */
+}
+
+/* Section Styling */
+.section {
     width: 100%;
     text-align: center;
+    margin-bottom: 20px;
 }
 
-/* Content Area */
-#content {
-    margin-top: 140px;
-    padding: 20px;
-}
-
-/* Counter Layout */
+/* Centered Counter Styling */
 .counter {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    gap: 20px;
+}
+
+/* Counter Button Styling */
+.counter button {
+    font-size: 24px;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 2px solid #6fbf4c;
+    color: #6fbf4c; /* Button text color */
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 /* Drone Button Styling */
@@ -61,7 +84,7 @@ body {
     border-radius: 5px;
     background-color: transparent;
     border: 2px solid; /* Outline in respective color */
-    color: black;
+    color: #6fbf4c; /* Button text color */
     cursor: pointer;
 }
 
@@ -89,4 +112,11 @@ body {
 .drone-options .drone-button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+}
+
+/* Text Styling for Remaining Indicators */
+#remainingBeanBags, #remainingBalls {
+    font-size: 16px;
+    color: #6fbf4c;
+    margin: 10px 0;
 }
