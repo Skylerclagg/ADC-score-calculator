@@ -9,11 +9,12 @@ let redDroneSelection = "None";
 let blueDroneSelection = "None";
 const maxBeanBags = 7;
 const maxBalls = 10;
+const maxDropZoneTops = 7;
 
 // Update count logic for each counter
 function updateCount(id, change) {
     if (id === 'dropZoneTopCleared') {
-        dropZoneTopCleared = Math.max(0, dropZoneTopCleared + change);
+        dropZoneTopCleared = Math.max(0, Math.min(maxDropZoneTops, dropZoneTopCleared + change));
         document.getElementById(id).textContent = dropZoneTopCleared;
     } else if (id === 'greenBeanBags') {
         greenBeanBags = Math.max(0, Math.min(maxBeanBags - blueBeanBags, greenBeanBags + change));
@@ -31,11 +32,11 @@ function updateCount(id, change) {
         blueBalls = Math.max(0, Math.min(maxBalls - (neutralBalls + greenBalls), blueBalls + change));
         document.getElementById(id).textContent = blueBalls;
     }
-    calculateRemainingItems();
-    calculateTotalScore();
+    calculateRemainingItems(); // Update remaining balls and bags
+    calculateTotalScore();     // Recalculate total score
 }
 
-// Calculate remaining bean bags and balls
+// Calculate and display remaining bean bags and balls
 function calculateRemainingItems() {
     const remainingBeanBags = maxBeanBags - (greenBeanBags + blueBeanBags);
     const remainingBalls = maxBalls - (neutralBalls + greenBalls + blueBalls);
@@ -43,15 +44,15 @@ function calculateRemainingItems() {
     document.getElementById('remainingBalls').textContent = `Remaining Balls: ${remainingBalls}`;
 }
 
-// Update drone selection for landing points
+// Update drone selection for landing points and recalculate score
 function selectDroneOption(drone, option) {
     if (drone === 'red') {
         redDroneSelection = option;
     } else {
         blueDroneSelection = option;
     }
-    calculateTotalScore();
-    updateDroneButtonStates();
+    calculateTotalScore(); // Recalculate score when drone option is selected
+    updateDroneButtonStates(); // Update the disabled states of drone buttons
 }
 
 // Disable drone options based on the other drone's selection
@@ -80,12 +81,14 @@ function calculateTotalScore() {
     let greenColorMatch = greenBeanBags > 0 ? (greenBalls * greenBeanBags * 2) : 0;
     let blueColorMatch = blueBeanBags > 0 ? (blueBalls * blueBeanBags * 2) : 0;
 
+    // Drone landing scores
     let redLandingScore = landingScore(redDroneSelection);
     let blueLandingScore = landingScore(blueDroneSelection);
 
+    // Calculate total score
     let totalScore = basicScore + greenBasePoints + blueBasePoints + greenColorMatch + blueColorMatch + redLandingScore + blueLandingScore;
 
-    // Display the total score
+    // Display total score
     document.getElementById('total-score').textContent = `Score: ${totalScore}`;
 
     // Check if bean bag constraint is violated
@@ -96,7 +99,7 @@ function calculateTotalScore() {
     });
 }
 
-// Calculate landing score based on selection
+// Calculate landing score based on drone selection
 function landingScore(selection) {
     switch (selection) {
         case "None": return 0;
