@@ -119,7 +119,7 @@ button {
 /* Selected drone button styling */
 .drone-options .drone-button.selected {
     color: #6fbf4c; /* Solid white text for selected state */
-    background-color: currentColor; /* Matches the button's border color */
+    background-color: grey; /* Matches the button's border color */
     opacity: 1; /* Ensures no transparency */
 }
 
