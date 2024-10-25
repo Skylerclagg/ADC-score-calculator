@@ -1,0 +1,135 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+/* Menu bar at the top */
+.menu-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu-bar button {
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    color: #007BFF;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.menu-bar h1 {
+    flex: 1;
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+}
+
+/* Score view section */
+#score-display {
+    margin-top: 60px;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #ddd;
+    position: fixed;
+    top: 60px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Content area where the counters and drone sections will appear */
+#content {
+    margin-top: 140px;
+    padding: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Section headers */
+.section h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Counter layout (for the + and - buttons with a value in the middle) */
+.counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.counter button {
+    font-size: 24px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.counter button:hover {
+    background-color: #0056b3;
+}
+
+.counter span {
+    font-size: 24px;
+    margin: 0 15px;
+    width: 50px;
+    text-align: center;
+}
+
+/* Drone Box layout */
+.drone-box {
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    margin: 20px 0;
+}
+
+.drone-box h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.drone-options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.drone-options.centered {
+    justify-content: center;
+}
+
+.drone-options button {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.drone-options button:hover {
+    background-color: #0056b3;
+}
