@@ -1,3 +1,4 @@
+// Variables for the state
 let dropZoneTopCleared = 0;
 let greenBeanBags = 0;
 let blueBeanBags = 0;
@@ -38,32 +39,64 @@ function updateCount(id, change) {
 function calculateRemainingItems() {
     const remainingBeanBags = maxBeanBags - (greenBeanBags + blueBeanBags);
     const remainingBalls = maxBalls - (neutralBalls + greenBalls + blueBalls);
-    // Update any relevant UI with the remaining counts if needed
+    document.getElementById('remainingBeanBags').textContent = `Remaining Bean Bags: ${remainingBeanBags}`;
+    document.getElementById('remainingBalls').textContent = `Remaining Balls: ${remainingBalls}`;
 }
 
 // Update drone selection for landing points
-function updateDroneSelection(drone, option) {
+function selectDroneOption(drone, option) {
     if (drone === 'red') {
         redDroneSelection = option;
     } else {
         blueDroneSelection = option;
     }
     calculateTotalScore();
+    updateDroneButtonStates();
 }
 
-// Calculate total score
+// Disable drone options based on the other drone's selection
+function updateDroneButtonStates() {
+    const redOptions = document.querySelectorAll('.red-drone-options button');
+    const blueOptions = document.querySelectorAll('.blue-drone-options button');
+    
+    redOptions.forEach(button => {
+        const option = button.getAttribute('data-option');
+        button.disabled = option === blueDroneSelection || (blueDroneSelection === "Landing Pad" && option === "Bullseye") || (blueDroneSelection === "Bullseye" && option === "Landing Pad");
+    });
+
+    blueOptions.forEach(button => {
+        const option = button.getAttribute('data-option');
+        button.disabled = option === redDroneSelection || (redDroneSelection === "Landing Pad" && option === "Bullseye") || (redDroneSelection === "Bullseye" && option === "Landing Pad");
+    });
+}
+
+// Calculate the total score based on all inputs
 function calculateTotalScore() {
     let basicScore = dropZoneTopCleared + neutralBalls + greenBeanBags + blueBeanBags;
+    let greenBasePoints = greenBalls;
+    let blueBasePoints = blueBalls;
+
+    // Color match for green and blue balls
     let greenColorMatch = greenBeanBags > 0 ? (greenBalls * greenBeanBags * 2) : 0;
     let blueColorMatch = blueBeanBags > 0 ? (blueBalls * blueBeanBags * 2) : 0;
+
     let redLandingScore = landingScore(redDroneSelection);
     let blueLandingScore = landingScore(blueDroneSelection);
 
-    let totalScore = basicScore + greenBalls + blueBalls + greenColorMatch + blueColorMatch + redLandingScore + blueLandingScore;
+    let totalScore = basicScore + greenBasePoints + blueBasePoints + greenColorMatch + blueColorMatch + redLandingScore + blueLandingScore;
+
+    // Display the total score
     document.getElementById('total-score').textContent = `Score: ${totalScore}`;
+
+    // Check if bean bag constraint is violated
+    const warningVisible = dropZoneTopCleared < (greenBeanBags + blueBeanBags);
+    const warningIcons = document.querySelectorAll('.warning-icon');
+    warningIcons.forEach(icon => {
+        icon.style.display = warningVisible ? 'inline' : 'none';
+    });
 }
 
-// Helper function to calculate landing score based on selection
+// Calculate landing score based on selection
 function landingScore(selection) {
     switch (selection) {
         case "None": return 0;
