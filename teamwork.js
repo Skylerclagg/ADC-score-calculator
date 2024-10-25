@@ -48,8 +48,10 @@ function calculateRemainingItems() {
 function selectDroneOption(drone, option) {
     if (drone === 'red') {
         redDroneSelection = option;
+        updateSelectedDrone('red');
     } else {
         blueDroneSelection = option;
+        updateSelectedDrone('blue');
     }
     calculateTotalScore(); // Recalculate score when drone option is selected
     updateDroneButtonStates(); // Update the disabled states of drone buttons
@@ -70,6 +72,19 @@ function updateDroneButtonStates() {
     blueOptions.forEach(button => {
         const option = button.getAttribute('data-option');
         button.disabled = (option === redDroneSelection || (redDroneSelection === "Landing Pad" && option === "Bullseye") || (redDroneSelection === "Bullseye" && option === "Landing Pad"));
+    });
+}
+
+// Update the selected state for the drone buttons
+function updateSelectedDrone(drone) {
+    const droneOptions = document.querySelectorAll(`.${drone}-drone-options .drone-button`);
+    droneOptions.forEach(button => {
+        const option = button.getAttribute('data-option');
+        if (option === (drone === 'red' ? redDroneSelection : blueDroneSelection)) {
+            button.classList.add('selected');
+        } else {
+            button.classList.remove('selected');
+        }
     });
 }
 
