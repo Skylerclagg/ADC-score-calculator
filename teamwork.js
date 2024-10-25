@@ -57,25 +57,27 @@ function selectDroneOption(drone, option) {
     updateDroneButtonStates(); // Update the disabled states of drone buttons
 }
 
-// Disable drone options based on the other drone's selection, but allow both to be "None"
+// Disable conflicting drone options but always allow "None" to be selectable
 function updateDroneButtonStates() {
     const redOptions = document.querySelectorAll('.red-drone-options button');
     const blueOptions = document.querySelectorAll('.blue-drone-options button');
 
     redOptions.forEach(button => {
         const option = button.getAttribute('data-option');
-        // Disable options that conflict with the blue drone's selection, except for "None"
-        button.disabled = (option !== "None" && option === blueDroneSelection) || 
-                          (blueDroneSelection === "Landing Pad" && option === "Bullseye") || 
-                          (blueDroneSelection === "Bullseye" && option === "Landing Pad");
+        // "None" should never be disabled; all other options follow conflict rules
+        button.disabled = option !== "None" && 
+                         (option === blueDroneSelection || 
+                         (blueDroneSelection === "Landing Pad" && option === "Bullseye") || 
+                         (blueDroneSelection === "Bullseye" && option === "Landing Pad"));
     });
 
     blueOptions.forEach(button => {
         const option = button.getAttribute('data-option');
-        // Disable options that conflict with the red drone's selection, except for "None"
-        button.disabled = (option !== "None" && option === redDroneSelection) || 
-                          (redDroneSelection === "Landing Pad" && option === "Bullseye") || 
-                          (redDroneSelection === "Bullseye" && option === "Landing Pad");
+        // "None" should never be disabled; all other options follow conflict rules
+        button.disabled = option !== "None" && 
+                         (option === redDroneSelection || 
+                         (redDroneSelection === "Landing Pad" && option === "Bullseye") || 
+                         (redDroneSelection === "Bullseye" && option === "Landing Pad"));
     });
 }
 
