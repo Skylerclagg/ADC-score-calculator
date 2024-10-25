@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teamwork Score Calculator</title>
+    <link rel="stylesheet" href="teamwork.css">
+</head>
+<body>
+    <!-- Menu bar with Back Button -->
+    <div class="menu-bar">
+        <button onclick="goBack()">← Back</button>
+        <h1>Teamwork Score Calculator</h1>
+    </div>
+
+    <!-- Score Display -->
+    <div id="score-display" class="score-view">
+        <span id="total-score">Score: 0</span>
+    </div>
+
+    <!-- Main Content -->
+    <div id="content">
+        <!-- Drone Zone Tops Cleared -->
+        <div class="section">
+            <h2>Drone Zone Tops Cleared</h2>
+            <div class="counter">
+                <button onclick="updateCount('dropZoneTopCleared', -1)">-</button>
+                <span id="dropZoneTopCleared">0</span>
+                <button onclick="updateCount('dropZoneTopCleared', 1)">+</button>
+            </div>
+        </div>
+
+        <!-- Green Bags on Drop Zone -->
+        <div class="section">
+            <h2>Green Bags on Drop Zone</h2>
+            <div class="counter">
+                <button onclick="updateCount('greenBeanBags', -1)">-</button>
+                <span id="greenBeanBags">0</span>
+                <button onclick="updateCount('greenBeanBags', 1)">+</button>
+            </div>
+        </div>
+
+        <!-- Blue Bags on Drop Zone -->
+        <div class="section">
+            <h2>Blue Bags on Drop Zone</h2>
+            <div class="counter">
+                <button onclick="updateCount('blueBeanBags', -1)">-</button>
+                <span id="blueBeanBags">0</span>
+                <button onclick="updateCount('blueBeanBags', 1)">+</button>
+            </div>
+        </div>
+
+        <!-- Green Balls in Zones -->
+        <div class="section">
+            <h2>Green Balls in Zones</h2>
+            <div class="counter">
+                <button onclick="updateCount('greenBalls', -1)">-</button>
+                <span id="greenBalls">0</span>
+                <button onclick="updateCount('greenBalls', 1)">+</button>
+            </div>
+        </div>
+
+        <!-- Neutral Balls in Zones -->
+        <div class="section">
+            <h2>Neutral Balls in Zones</h2>
+            <div class="counter">
+                <button onclick="updateCount('neutralBalls', -1)">-</button>
+                <span id="neutralBalls">0</span>
+                <button onclick="updateCount('neutralBalls', 1)">+</button>
+            </div>
+        </div>
+
+        <!-- Blue Balls in Zones -->
+        <div class="section">
+            <h2>Blue Balls in Zones</h2>
+            <div class="counter">
+                <button onclick="updateCount('blueBalls', -1)">-</button>
+                <span id="blueBalls">0</span>
+                <button onclick="updateCount('blueBalls', 1)">+</button>
+            </div>
+        </div>
+
+        <!-- Red Drone Section -->
+        <div class="drone-box">
+            <h3>Red Drone</h3>
+            <div class="drone-options">
+                <button onclick="selectDroneOption('red', 'None')">None</button>
+                <button onclick="selectDroneOption('red', 'Small Cube')">Small Cube</button>
+            </div>
+            <div class="drone-options centered">
+                <button onclick="selectDroneOption('red', 'Large Cube')">Large Cube</button>
+            </div>
+            <div class="drone-options">
+                <button onclick="selectDroneOption('red', 'Landing Pad')">Landing Pad</button>
+                <button onclick="selectDroneOption('red', 'Bullseye')">Bullseye</button>
+            </div>
+        </div>
+
+        <!-- Blue Drone Section -->
+        <div class="drone-box">
+            <h3>Blue Drone</h3>
+            <div class="drone-options">
+                <button onclick="selectDroneOption('blue', 'None')">None</button>
+                <button onclick="selectDroneOption('blue', 'Small Cube')">Small Cube</button>
+            </div>
+            <div class="drone-options centered">
+                <button onclick="selectDroneOption('blue', 'Large Cube')">Large Cube</button>
+            </div>
+            <div class="drone-options">
+                <button onclick="selectDroneOption('blue', 'Landing Pad')">Landing Pad</button>
+                <button onclick="selectDroneOption('blue', 'Bullseye')">Bullseye</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="teamwork.js"></script>
+</body>
+</html>
