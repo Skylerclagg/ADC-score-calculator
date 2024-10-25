@@ -4,7 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teamwork Score Calculator</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .score-view {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .warning-icon {
+            color: red;
+            margin: 0 10px;
+        }
+
+        .counter-section, .drone-selection {
+            margin: 15px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        button {
+            font-size: 24px;
+            padding: 5px 15px;
+            margin: 0 5px;
+        }
+
+        select {
+            font-size: 18px;
+            padding: 5px;
+        }
+
+        p {
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <!-- Score Display with Warning -->
@@ -43,9 +87,140 @@
         <!-- Remaining Bean Bags -->
         <p>Remaining Bean Bags: <span id="remainingBeanBags">7</span></p>
 
-        <!-- Placeholder for other sections like Balls in Zones, Red and Blue Drone selections -->
+        <!-- Green Balls in Zones -->
+        <div class="counter-section">
+            <h2>Green Balls in Zones</h2>
+            <button onclick="updateCount('greenBalls', -1)">-</button>
+            <span id="greenBalls">0</span>
+            <button onclick="updateCount('greenBalls', 1)">+</button>
+        </div>
+
+        <!-- Neutral Balls in Zones -->
+        <div class="counter-section">
+            <h2>Neutral Balls in Zones</h2>
+            <button onclick="updateCount('neutralBalls', -1)">-</button>
+            <span id="neutralBalls">0</span>
+            <button onclick="updateCount('neutralBalls', 1)">+</button>
+        </div>
+
+        <!-- Blue Balls in Zones -->
+        <div class="counter-section">
+            <h2>Blue Balls in Zones</h2>
+            <button onclick="updateCount('blueBalls', -1)">-</button>
+            <span id="blueBalls">0</span>
+            <button onclick="updateCount('blueBalls', 1)">+</button>
+        </div>
+
+        <!-- Remaining Balls -->
+        <p>Remaining Balls: <span id="remainingBalls">10</span></p>
+
+        <!-- Red Drone Selection -->
+        <div class="drone-selection">
+            <h2>Red Drone Landing</h2>
+            <select id="redDroneSelection" onchange="updateDroneSelection('red')">
+                <option value="None">None</option>
+                <option value="Small Cube">Small Cube</option>
+                <option value="Large Cube">Large Cube</option>
+                <option value="Landing Pad">Landing Pad</option>
+                <option value="Bullseye">Bullseye</option>
+            </select>
+        </div>
+
+        <!-- Blue Drone Selection -->
+        <div class="drone-selection">
+            <h2>Blue Drone Landing</h2>
+            <select id="blueDroneSelection" onchange="updateDroneSelection('blue')">
+                <option value="None">None</option>
+                <option value="Small Cube">Small Cube</option>
+                <option value="Large Cube">Large Cube</option>
+                <option value="Landing Pad">Landing Pad</option>
+                <option value="Bullseye">Bullseye</option>
+            </select>
+        </div>
     </div>
 
-    <script src="app.js"></script>
+    <script>
+        // Variables to store counters and selections
+        let dropZoneTopCleared = 0;
+        let greenBeanBags = 0;
+        let blueBeanBags = 0;
+        let neutralBalls = 0;
+        let greenBalls = 0;
+        let blueBalls = 0;
+        let redDroneSelection = "None";
+        let blueDroneSelection = "None";
+        const maxBeanBags = 7;
+        const maxBalls = 10;
+
+        // Function to update count for counters
+        function updateCount(id, change) {
+            if (id === 'dropZoneTopCleared') {
+                dropZoneTopCleared = Math.max(0, dropZoneTopCleared + change);
+                document.getElementById(id).textContent = dropZoneTopCleared;
+            } else if (id === 'greenBeanBags') {
+                greenBeanBags = Math.max(0, Math.min(maxBeanBags - blueBeanBags, greenBeanBags + change));
+                document.getElementById(id).textContent = greenBeanBags;
+            } else if (id === 'blueBeanBags') {
+                blueBeanBags = Math.max(0, Math.min(maxBeanBags - greenBeanBags, blueBeanBags + change));
+                document.getElementById(id).textContent = blueBeanBags;
+            } else if (id === 'neutralBalls') {
+                neutralBalls = Math.max(0, Math.min(maxBalls - (greenBalls + blueBalls), neutralBalls + change));
+                document.getElementById(id).textContent = neutralBalls;
+            } else if (id === 'greenBalls') {
+                greenBalls = Math.max(0, Math.min(maxBalls - (neutralBalls + blueBalls), greenBalls + change));
+                document.getElementById(id).textContent = greenBalls;
+            } else if (id === 'blueBalls') {
+                blueBalls = Math.max(0, Math.min(maxBalls - (neutralBalls + greenBalls), blueBalls + change));
+                document.getElementById(id).textContent = blueBalls;
+            }
+            calculateRemainingItems();
+            calculateTotalScore();
+        }
+
+        // Calculate remaining bean bags and balls
+        function calculateRemainingItems() {
+            const remainingBeanBags = maxBeanBags - (greenBeanBags + blueBeanBags);
+            const remainingBalls = maxBalls - (neutralBalls + greenBalls + blueBalls);
+            document.getElementById('remainingBeanBags').textContent = remainingBeanBags;
+            document.getElementById('remainingBalls').textContent = remainingBalls;
+        }
+
+        // Update drone selection for landing points
+        function updateDroneSelection(drone) {
+            if (drone === 'red') {
+                redDroneSelection = document.getElementById('redDroneSelection').value;
+            } else {
+                blueDroneSelection = document.getElementById('blueDroneSelection').value;
+            }
+            calculateTotalScore();
+        }
+
+        // Calculate total score
+        function calculateTotalScore() {
+            let basicScore = dropZoneTopCleared + neutralBalls + greenBeanBags + blueBeanBags;
+            let greenColorMatch = greenBeanBags > 0 ? (greenBalls * greenBeanBags * 2) : 0;
+            let blueColorMatch = blueBeanBags > 0 ? (blueBalls * blueBeanBags * 2) : 0;
+            let redLandingScore = landingScore(redDroneSelection);
+            let blueLandingScore = landingScore(blueDroneSelection);
+
+            let totalScore = basicScore + greenBalls + blueBalls + greenColorMatch + blueColorMatch + redLandingScore + blueLandingScore;
+            const warningVisible = dropZoneTopCleared < (greenBeanBags + blueBeanBags);
+            document.getElementById('total-score').textContent = `Score: ${totalScore}`;
+            document.getElementById('warning-icon').style.display = warningVisible ? 'inline' : 'none';
+            document.getElementById('warning-icon-right').style.display = warningVisible ? 'inline' : 'none';
+        }
+
+        // Helper function to calculate landing score based on selection
+        function landingScore(selection) {
+            switch (selection) {
+                case "None": return 0;
+                case "Small Cube": return 25;
+                case "Large Cube": return 15;
+                case "Landing Pad": return 15;
+                case "Bullseye": return 25;
+                default: return 0;
+            }
+        }
+    </script>
 </body>
 </html>
