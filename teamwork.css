@@ -54,19 +54,8 @@ body {
     margin-bottom: 20px;
 }
 
-/* Buttons */
-.counter button {
-    font-size: 24px;
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 /* Drone Button Styling */
-.drone-options button {
+.drone-options .drone-button {
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 5px;
@@ -77,27 +66,27 @@ body {
 }
 
 /* Red Drone Buttons */
-.red-drone-options button {
+.red-drone-options .drone-button {
     border-color: red;
 }
 
 /* Blue Drone Buttons */
-.blue-drone-options button {
+.blue-drone-options .drone-button {
     border-color: blue;
 }
 
 /* Selected Drone Button */
-.drone-options button.selected {
+.drone-options .drone-button.selected {
     color: white;
     background-color: currentColor; /* Matches the button's border color (red or blue) */
 }
 
 /* Hover and Disabled States */
-.drone-options button:hover:not([disabled]) {
+.drone-options .drone-button:hover:not([disabled]) {
     opacity: 0.8;
 }
 
-.drone-options button:disabled {
+.drone-options .drone-button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
