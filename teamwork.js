@@ -65,13 +65,17 @@ function updateDroneButtonStates() {
     redOptions.forEach(button => {
         const option = button.getAttribute('data-option');
         // Disable options that conflict with the blue drone's selection, except for "None"
-        button.disabled = (option !== "None" && option === blueDroneSelection) || (blueDroneSelection === "Landing Pad" && option === "Bullseye") || (blueDroneSelection === "Bullseye" && option === "Landing Pad");
+        button.disabled = (option !== "None" && option === blueDroneSelection) || 
+                          (blueDroneSelection === "Landing Pad" && option === "Bullseye") || 
+                          (blueDroneSelection === "Bullseye" && option === "Landing Pad");
     });
 
     blueOptions.forEach(button => {
         const option = button.getAttribute('data-option');
         // Disable options that conflict with the red drone's selection, except for "None"
-        button.disabled = (option !== "None" && option === redDroneSelection) || (redDroneSelection === "Landing Pad" && option === "Bullseye") || (redDroneSelection === "Bullseye" && option === "Landing Pad");
+        button.disabled = (option !== "None" && option === redDroneSelection) || 
+                          (redDroneSelection === "Landing Pad" && option === "Bullseye") || 
+                          (redDroneSelection === "Bullseye" && option === "Landing Pad");
     });
 }
 
