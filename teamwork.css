@@ -11,13 +11,13 @@ body {
     align-items: center;
 }
 
-/* Main content wrapper to hold everything centered */
+/* Wrapper to ensure content is centered vertically and horizontally */
 #content-wrapper {
     text-align: center;
     width: 100%;
 }
 
-/* Center the menu bar at the top */
+/* Fixed Menu Bar at the top, not covering other content */
 .menu-bar {
     display: flex;
     justify-content: center;
@@ -28,6 +28,7 @@ body {
     width: 100%;
     top: 0;
     z-index: 100;
+    box-sizing: border-box;
 }
 
 .menu-bar button {
@@ -40,7 +41,16 @@ body {
     cursor: pointer;
 }
 
-/* Center the Score at the top */
+/* Adjusts position of all content below the fixed menu bar */
+#content {
+    margin-top: 100px; /* Space to accommodate both menu bar and score display */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Score Display below the menu bar */
 #score-display {
     font-size: 24px;
     font-weight: bold;
@@ -49,17 +59,8 @@ body {
     text-align: center;
     color: white;
     width: 100%;
-    margin-top: 60px;
     box-sizing: border-box;
-}
-
-/* Main content styling for centering elements vertically */
-#content {
-    margin-top: 140px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    margin-bottom: 20px;
 }
 
 /* Section headers styling */
@@ -118,8 +119,8 @@ button {
 
 /* Selected drone button styling */
 .drone-options .drone-button.selected {
-    color: #6fbf4c; /* Solid white text for selected state */
-    background-color: grey; /* Matches the button's border color */
+    color: white; /* Solid white text for selected state */
+    background-color: currentColor; /* Matches the button's border color */
     opacity: 1; /* Ensures no transparency */
 }
 
