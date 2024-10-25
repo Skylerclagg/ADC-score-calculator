@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teamwork Score Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Score Display with Warning -->
+    <div id="score-display" class="score-view">
+        <span id="warning-icon" class="warning-icon" style="display: none;">⚠️</span>
+        <span id="total-score">Score: 0</span>
+        <span id="warning-icon-right" class="warning-icon" style="display: none;">⚠️</span>
+    </div>
+
+    <!-- Input Sections -->
+    <div id="calculator">
+        <!-- Drone Zone Tops Cleared Section -->
+        <div class="counter-section">
+            <h2>Drone Zone Tops Cleared</h2>
+            <button onclick="updateCount('dropZoneTopCleared', -1)">-</button>
+            <span id="dropZoneTopCleared">0</span>
+            <button onclick="updateCount('dropZoneTopCleared', 1)">+</button>
+        </div>
+
+        <!-- Green Bags on Drop Zone -->
+        <div class="counter-section">
+            <h2>Green Bags on Drop Zone</h2>
+            <button onclick="updateCount('greenBeanBags', -1)">-</button>
+            <span id="greenBeanBags">0</span>
+            <button onclick="updateCount('greenBeanBags', 1)">+</button>
+        </div>
+
+        <!-- Blue Bags on Drop Zone -->
+        <div class="counter-section">
+            <h2>Blue Bags on Drop Zone</h2>
+            <button onclick="updateCount('blueBeanBags', -1)">-</button>
+            <span id="blueBeanBags">0</span>
+            <button onclick="updateCount('blueBeanBags', 1)">+</button>
+        </div>
+
+        <!-- Remaining Bean Bags -->
+        <p>Remaining Bean Bags: <span id="remainingBeanBags">7</span></p>
+
+        <!-- Placeholder for other sections like Balls in Zones, Red and Blue Drone selections -->
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
